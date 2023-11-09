@@ -9,6 +9,7 @@ final class GildedRose
     const TYPE_BRIE = 'Aged Brie';
     const TYPE_PASS = 'Backstage passes to a TAFKAL80ETC concert';
     const TYPE_LEGENDARY = 'Sulfuras, Hand of Ragnaros';
+    const TYPE_CONJURED = 'Conjured Mana Cake';
 
     /**
      * @param Item[] $items
@@ -30,6 +31,9 @@ final class GildedRose
                     break;
                 case self::TYPE_LEGENDARY:
                     $steps = LegendaryItem::getSteps($item);
+                    break;
+                case self::TYPE_CONJURED:
+                    $steps = ConjuredItem::getSteps($item);
                     break;
                 default:
                     $steps = NormalItem::getSteps($item);

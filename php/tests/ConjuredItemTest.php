@@ -19,4 +19,24 @@ class ConjuredItemTest extends TestCase
         $this->assertEquals(0, $items[0]->sellIn);
         $this->assertEquals(8, $items[0]->quality);
     }
+
+    public function testQualityNotNegative(): void
+    {
+        $items = [new Item('Conjured Mana Cake', 0, 1)];
+        $gildedRose = new GildedRose($items);
+        $gildedRose->updateQuality();
+
+        $this->assertEquals(-1, $items[0]->sellIn);
+        $this->assertEquals(0, $items[0]->quality);
+    }
+
+    public function testQualityDegradesDoublyAfterSellInPassed(): void
+    {
+        $items = [new Item('Conjured Mana Cake', 0, 10)];
+        $gildedRose = new GildedRose($items);
+        $gildedRose->updateQuality();
+
+        $this->assertEquals(-1, $items[0]->sellIn);
+        $this->assertEquals(6, $items[0]->quality);
+    }
 }
