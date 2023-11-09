@@ -32,11 +32,11 @@ class BrieItemTest extends TestCase
 
     public function testQualityNotExceedingMax(): void
     {
-        $items = [new Item('Aged Brie', 1, 50)];
+        $items = [new Item('Aged Brie', 0, 49)];
         $gildedRose = new GildedRose($items);
         $gildedRose->updateQuality();
 
-        $this->assertEquals(0, $items[0]->sellIn);
+        $this->assertEquals(-1, $items[0]->sellIn);
         $this->assertEquals(50, $items[0]->quality);
     }
 }
